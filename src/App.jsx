@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar/Navbar'
-import bgVideo from './assets/ginna.mp4'
+import bgVideo from './assets/zc.mp4'
 import Hero from './Hero/Hero'
 import Services from './Services/Services'
 import Banner from './Banner/Banner'
