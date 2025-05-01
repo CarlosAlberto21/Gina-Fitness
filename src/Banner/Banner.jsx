@@ -13,7 +13,7 @@ const Banner = () => {
 
           <p className='text-white text-base sm:text-lg' style={{ fontFamily: "'Montserrat', cursive" }}>
             Hi! I’m Gina, a certified fitness coach passionate about helping people transform their bodies and boost their confidence.
-            With over [X years] of experience, I specialize in personalized training programs, functional workouts, and motivation strategies to help you achieve lasting results.
+            With over 2 years of experience, I specialize in personalized training programs, functional workouts, and motivation strategies to help you achieve lasting results.
             Whether you’re starting your fitness journey or pushing towards new goals, I’m here to guide you every step of the way. Let's unlock your full potential together!
           </p>
 
