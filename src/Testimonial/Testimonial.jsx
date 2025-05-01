@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import img1 from "../assets/fitnessF.png";
 import img2 from "../assets/runner.png";
 import img3 from "../assets/fitt3.png";
@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css"; 
 import { FaInstagram, FaFacebookF, FaTwitter } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const testimonialData = [
   {
@@ -31,6 +32,7 @@ const testimonialData = [
   },
 ];
 
+
 const settings = {
   dots: false,
   infinite: true,
@@ -44,6 +46,27 @@ const settings = {
 
 const Testimonial = () => {
 
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      'service_360dmok',
+      'template_4uyr9ss',
+      form.current,
+      'XH8e2pm7Dzybz6vy8'
+    )
+    .then((result) => {
+        console.log(result.text);
+        alert("Mensaje enviado con éxito");
+    }, (error) => {
+        console.log(error.text);
+        alert("Error al enviar el mensaje");
+    });
+
+    e.target.reset();
+  }
   return (
     <div className='bg-white py-10'>
       <h1 className='text-3xl font-bold text-pink-500 p-4 mb-4 text-center'>Contacto & Testimonios</h1>
@@ -52,19 +75,19 @@ const Testimonial = () => {
         
         {/* Formulario */}
         <div className='flex flex-col gap-6 p-6 w-full max-w-lg border-1 ml-3 border-pink-300 shadow-lg bg-gradient-to-r from-white to-pink-50 shadow-gray-300 rounded-2xl'>
-          <form>
+          <form ref={form} onSubmit={sendEmail}>
             <div className='mb-4'>
-              <label className="block font-medium">Nombre</label>
+              <label className="block font-medium">Name</label>
               <input
                 type="text"
                 name="name"
                 className="w-full border-b-2 border-b-pink-700 px-4 py-2 rounded mt-1 focus:outline-none focus:bg-gradient-to-r focus:from-pink-300 via-pink-300 to-pink-400"
-                placeholder="Tu nombre"
+                placeholder="Your Name"
               />
             </div>
 
             <div className='mb-4'>
-              <label className="block font-medium">Correo electrónico</label>
+              <label className="block font-medium">Email</label>
               <input
                 type="email"
                 name="email"
@@ -74,12 +97,22 @@ const Testimonial = () => {
             </div>
 
             <div className='mb-4'>
-              <label className="block font-medium">Mensaje</label>
+              <label className="block font-medium">Number</label>
+              <input
+                type="text"
+                name="phone"
+                className="w-full border-b-2 border-b-pink-700 px-4 py-2 rounded mt-1 focus:outline-none focus:bg-gradient-to-r focus:from-pink-300 via-pink-300 to-pink-400"
+                placeholder="Number"
+              />
+            </div>
+
+            <div className='mb-4'>
+              <label className="block font-medium">Message</label>
               <textarea
                 name="message"
                 rows="4" 
                 className="w-full border-b-2 border-b-pink-700 px-4 py-2 rounded mt-1 focus:outline-none focus:bg-gradient-to-r focus:from-pink-300 via-pink-300 to-pink-400"
-                placeholder="Escribe tu mensaje aquí..."
+                placeholder="Write your message here..."
               ></textarea>
             </div>
 
@@ -87,7 +120,7 @@ const Testimonial = () => {
               type="submit"
               className="bg-pink-500 text-white px-6 py-2 rounded hover:bg-pink-600 transition"
             >
-              Enviar
+              Send
             </button>
           </form>
         </div>
